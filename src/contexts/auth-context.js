@@ -1,9 +1,11 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import { getUserFromCookie } from "../utils/user/functions";
 
 export const AuthContext = createContext({
 	user: null,
 	setUser: (user) => {},
+	userLoading: true,
+	setUserLoading: () => {},
 });
 
 const userReducer = (state, action) => {
@@ -17,6 +19,7 @@ const userReducer = (state, action) => {
 
 const AuthProvider = ({ children }) => {
 	const [user, dispatch] = useReducer(userReducer, null);
+	const [userLoading, setUserLoading] = useState(true);
 
 	useEffect(() => {
 		async function init() {
@@ -32,11 +35,14 @@ const AuthProvider = ({ children }) => {
 			type: "SET_USER",
 			payload: user,
 		});
+		setUserLoading(false);
 	}
 
 	const value = {
 		user,
 		setUser: setUser,
+		userLoading,
+		setUserLoading,
 	};
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

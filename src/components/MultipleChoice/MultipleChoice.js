@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./MultipleChoice.css";
 
-const MultipleChoice = ({ question, index }) => {
+const MultipleChoice = ({ question, index, dashboard }) => {
 	const [selectedOptions, setSelectedOptions] = useState([]);
 
 	const handleOptionChange = (event) => {
@@ -16,10 +16,16 @@ const MultipleChoice = ({ question, index }) => {
 		console.log(selectedOptions);
 	};
 	return (
-		<div className="border-2 bg-gray-300 border-gray-400 rounded-md shadow-md p-5 mt-5">
+		<div
+			className={`border-2 bg-gray-300 border-gray-400 rounded-md shadow-md p-5 mt-5`}
+		>
 			{question && (
 				<>
-					<h1 className="text-xl mt-4 mb-2 font-semibold capitalize">
+					<h1
+						className={`${
+							!dashboard ? "text-xl" : "text-[10px]"
+						} mt-4 mb-2 font-semibold capitalize`}
+					>
 						{index}. {question.title}
 					</h1>
 					<hr />

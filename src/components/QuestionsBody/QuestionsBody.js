@@ -5,13 +5,13 @@ import MultipleChoice from "../MultipleChoice/MultipleChoice";
 import ShortAnswer from "../ShortAnswer/ShortAnswer";
 import FileUpload from "../FIleUpload/FileUpload";
 
-const QuestionsBody = ({ questions }) => {
+const QuestionsBody = ({ questions, dashboard }) => {
 	console.log(
 		"🚀 ~ file: QuestionsBody.js:4 ~ QuestionsBody ~ questions:",
 		questions
 	);
 	return (
-		<div className={`mb-5`}>
+		<div className={`mb-10`}>
 			{questions &&
 				questions.map((question, index) => {
 					if (question.type === "dropDown") {
@@ -28,6 +28,7 @@ const QuestionsBody = ({ questions }) => {
 								question={question}
 								key={index}
 								index={index + 1}
+								dashboard={dashboard}
 							/>
 						);
 					} else if (question?.type === "shortAnswer") {

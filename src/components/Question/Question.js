@@ -67,7 +67,7 @@ const Question = ({ question, index, deleteHandler, titles, setTitles }) => {
 		setEventSaveLoading(false);
 	};
 
-	const optionHandler = (_id) => {
+	const optionHandler = async (_id) => {
 		const { questions } = event;
 		const createOption = {
 			_id: uuidv4(),
@@ -80,12 +80,19 @@ const Question = ({ question, index, deleteHandler, titles, setTitles }) => {
 		const question = questions[idx];
 		question.options.push(createOption);
 		questions[idx] = question;
+		let alteredEvent;
 		setEvent((prev) => {
-			return {
+			alteredEvent = {
 				...prev,
 				questions: questions,
 			};
+			return alteredEvent;
 		});
+
+		setEventSaveLoading(true);
+		const me = await updateEvent(event?._id, alteredEvent);
+		console.log("🚀 ~ file: Question.js:44 ~ onBlurHandler ~ event:", me);
+		setEventSaveLoading(false);
 	};
 
 	const deleteOptionHandler = async (_id, questionId) => {

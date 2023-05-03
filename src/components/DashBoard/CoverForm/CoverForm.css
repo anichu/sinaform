@@ -1,0 +1,16 @@
+.cover-form-header {
+	position: relative;
+}
+
+.cover-form-header::before {
+	content: ""; /* Required for the pseudo-element to generate content */
+	display: block; /* Makes the pseudo-element a block-level element */
+	position: absolute; /* Positions the pseudo-element relative to the .example-element */
+	top: 0px; /* Positions the pseudo-element at the top of .example-element */
+	left: 0; /* Positions the pseudo-element at the left of .example-element */
+	bottom: 0px;
+	width: 10px; /* Sets the width of the pseudo-element to 40 pixels */
+	height: 100%; /* Sets the height of the pseudo-element to 40 pixels */
+	background-color: purple;
+	border-bottom-left-radius: 5px;
+}

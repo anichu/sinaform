@@ -1,4 +1,4 @@
-import React, { createRef, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import EventHeader from "../../components/EventHeader/EventHeader";
 import { FaPlus } from "react-icons/fa";
@@ -31,7 +31,7 @@ const EventPage = () => {
 		{ value: "shortAnswer", label: "short answer" },
 	];
 
-	const submitButton = () => {
+	const submitButton = async () => {
 		const _id = uuidv4();
 
 		if (!inputType) {
@@ -47,12 +47,17 @@ const EventPage = () => {
 		questions.push(createQuestion);
 		// setIsOpen(false);
 		// console.log(createQuestion);
+		let alteredEvent;
 		setEvent((prev) => {
-			return {
+			alteredEvent = {
 				...prev,
 				questions: questions,
 			};
+			return alteredEvent;
 		});
+		setEventSaveLoading(true);
+		await updateEvent(id, alteredEvent);
+		setEventSaveLoading(false);
 		window.scrollTo(0, document.body.scrollHeight + 100);
 	};
 
