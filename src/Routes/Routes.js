@@ -7,6 +7,8 @@ import PrivateRoute from "./PrivateRoute";
 import EventPage from "../pages/EventPage/EventPage";
 import { getSingleEvent } from "../utils/event/https";
 import QuestionsPage from "../pages/QuestionsPage/QuestionsPage";
+import EventLayout from "../layout/EventLayout";
+import EventResponsePage from "../pages/EventResponsePage/EventResponsePage";
 
 export const router = createBrowserRouter([
 	{
@@ -22,11 +24,6 @@ export const router = createBrowserRouter([
 				),
 			},
 			{
-				path: "/event/:id",
-				element: <EventPage />,
-				loader: async ({ params }) => getSingleEvent(params.id),
-			},
-			{
 				path: "/event/questions/:id",
 				element: <QuestionsPage />,
 				loader: async ({ params }) => getSingleEvent(params.id),
@@ -38,6 +35,22 @@ export const router = createBrowserRouter([
 			{
 				path: "/login",
 				element: <Login />,
+			},
+		],
+	},
+	{
+		path: "/event",
+		element: <EventLayout />,
+		children: [
+			{
+				path: "/event/:id",
+				element: <EventPage />,
+				loader: async ({ params }) => getSingleEvent(params.id),
+			},
+			{
+				path: "/event/response/:id",
+				element: <EventResponsePage />,
+				loader: async ({ params }) => getSingleEvent(params.id),
 			},
 		],
 	},

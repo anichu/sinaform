@@ -9,6 +9,7 @@ import Questions from "../../components/Questions/Questions";
 import { updateEvent } from "../../utils/event/https";
 
 import Header from "../../components/Header/Header";
+import RequiredButton from "../../components/RequiredButton/RequiredButton";
 
 const EventPage = () => {
 	const [inputType, setInputType] = useState("");
@@ -42,6 +43,7 @@ const EventPage = () => {
 			title: "",
 			options: [],
 			type: inputType,
+			required: false,
 		};
 		const questions = event.questions;
 		questions.push(createQuestion);
@@ -75,7 +77,7 @@ const EventPage = () => {
 	return (
 		<div id="screenshot-component">
 			<div>
-				<Header _id={id} />
+				{/* <Header _id={id} /> */}
 				<EventHeader
 					title={event?.title}
 					description={event?.description}
@@ -99,7 +101,7 @@ const EventPage = () => {
 							<Select
 								options={options}
 								isSearchable={false}
-								className="mt-2 border-r-0 rounded-none"
+								className="mt-2  border-r-0 rounded-none"
 								autoFocus={true}
 								onChange={selectChangeHandler}
 								styles={{

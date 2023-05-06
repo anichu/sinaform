@@ -1,0 +1,33 @@
+.switch {
+	width: 50px;
+	height: 25px;
+	border-radius: 25px;
+	background-color: rgb(168, 168, 168);
+	position: relative;
+	cursor: pointer;
+}
+
+.switch-toggle {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background-color: white;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 12px;
+	font-weight: bold;
+	transition: all 0.3s;
+}
+
+.switch-toggle.on {
+	left: 25px;
+	background-color: green;
+}
+
+.switch-toggle.off {
+	background-color: white;
+}

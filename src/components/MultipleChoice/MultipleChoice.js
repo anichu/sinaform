@@ -54,9 +54,9 @@ const MultipleChoice = ({ question, index, dashboard }) => {
 				<div className="text-right mt-5 ">
 					<span
 						onClick={() => setSelectedOptions([])}
-						className="cursor-pointer bg-gray-600 px-4 py-2"
+						className="cursor-pointer font-medium text-purple-950  px-4 py-2"
 					>
-						clear response
+						Clear response
 					</span>
 				</div>
 			)}

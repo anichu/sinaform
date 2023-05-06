@@ -40,9 +40,9 @@ const DropDown = ({ question, index }) => {
 				<div className="text-right mt-5 ">
 					<span
 						onClick={() => setSelectedAnswer("")}
-						className="cursor-pointer bg-gray-600 px-4 py-2"
+						className="cursor-pointer font-semibold   text-purple-950 px-4 py-2"
 					>
-						clear response
+						Clear response
 					</span>
 				</div>
 			)}

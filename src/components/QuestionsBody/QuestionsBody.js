@@ -11,7 +11,7 @@ const QuestionsBody = ({ questions, dashboard }) => {
 		questions
 	);
 	return (
-		<div className={`mb-10`}>
+		<div className="">
 			{questions &&
 				questions.map((question, index) => {
 					if (question.type === "dropDown") {

@@ -5,7 +5,7 @@ import ExpiredEvent from "../ExpiredEvent/ExpiredEvent";
 const ExpiredEvents = ({ events }) => {
 	return (
 		<div className="px-2">
-			<h1 className="mt-5">Expired Events</h1>
+			<h1 className="mt-5 font-medium">Expired Events</h1>
 			<div className="grid grid-cols-5 gap-5">
 				{events?.length > 0 &&
 					events.map((event) => {

@@ -6,7 +6,7 @@ import UpcomingEvent from "../UpcomingEvent/UpcomingEvent";
 const UpcomingEvents = ({ events }) => {
 	return (
 		<div className="px-2">
-			<h1 className="mt-5">Upcoming Events</h1>
+			<h1 className="mt-5 font-medium">Upcoming Events</h1>
 			<div className="grid grid-cols-5 gap-5">
 				{events?.length > 0 &&
 					events.map((event) => {

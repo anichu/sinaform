@@ -1,6 +1,7 @@
 import React from "react";
 import CoverForm from "../CoverForm/CoverForm";
 import { Link, useNavigate } from "react-router-dom";
+import Time from "../../Time/Time";
 
 const ExpiredEvent = ({ event }) => {
 	const navigate = useNavigate();
@@ -21,6 +22,7 @@ const ExpiredEvent = ({ event }) => {
 				<h3 className="text-xl capitalize break-words text-justify">
 					{event?.title}
 				</h3>
+				<Time time={event?.createdAt} />
 			</div>
 		</Link>
 	);

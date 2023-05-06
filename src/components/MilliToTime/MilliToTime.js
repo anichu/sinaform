@@ -1,29 +1,26 @@
 import React from "react";
 
-const Time = ({ time }) => {
+const MilliToTime = ({ diff, previousDate, level }) => {
 	const presentDate = new Date();
-	const previousDate = new Date(time);
-	const presentTime = presentDate.getTime();
-	const previousTime = previousDate.getTime();
-	const dif = presentTime - previousTime;
+	console.log(diff);
 	const seconds = () => {
-		return parseInt(dif / 1000);
+		return parseInt(diff / 1000);
 	};
 
 	const minutes = () => {
-		return parseInt(dif / 60000);
+		return parseInt(diff / 60000);
 	};
 
 	const hours = () => {
-		return parseInt(dif / 3600000);
+		return parseInt(diff / 3600000);
 	};
 
 	const days = () => {
-		return parseInt(dif / (24 * 3600 * 1000));
+		return parseInt(diff / (24 * 3600 * 1000));
 	};
 
 	const weeks = () => {
-		return parseInt(dif / (24 * 3600 * 1000 * 7));
+		return parseInt(diff / (24 * 3600 * 1000 * 7));
 	};
 
 	const months = () => {
@@ -31,11 +28,11 @@ const Time = ({ time }) => {
 		const prevy = previousDate.getFullYear();
 		const presm = presentDate.getMonth();
 		const prevm = previousDate.getMonth();
-		return parseInt(presm + 12 * presy - (prevm + 12 * prevy));
+		return parseInt(prevm + 12 * prevy - (presm + 12 * presy));
 	};
 
 	const years = () => {
-		return presentDate.getFullYear() - previousDate.getFullYear();
+		return previousDate.getFullYear() - presentDate.getFullYear();
 	};
 	var timeLaps = seconds();
 	var dateOutput = "";
@@ -71,7 +68,13 @@ const Time = ({ time }) => {
 			}
 		}
 	}
-	return <p className="font-bold text-sm text-black">{dateOutput} ago </p>;
+
+	console.log(dateOutput);
+	return (
+		<p className="font-bold text-sm text-black">
+			{dateOutput} left to <span className="text-purple-950"> {level} </span>
+		</p>
+	);
 };
 
-export default Time;
+export default MilliToTime;

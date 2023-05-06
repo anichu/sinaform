@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { HiXMark } from "react-icons/hi2";
 import Option from "../Option/Option";
 import { updateEvent } from "../../utils/event/https";
+import RequiredButton from "../RequiredButton/RequiredButton";
 
 const Question = ({ question, index, deleteHandler, titles, setTitles }) => {
 	const optionCheck = ["fileUpload", "shortAnswer"];
@@ -168,14 +169,17 @@ const Question = ({ question, index, deleteHandler, titles, setTitles }) => {
 					</div>
 				))}
 
-			{!optionCheck.includes(question?.type) && (
-				<button
-					onClick={() => optionHandler(question._id)}
-					className="bg-purple-900 px-4 ml-5 py-1 mt-3 text-white rounded-md"
-				>
-					add option
-				</button>
-			)}
+			<div className="flex items-center mt-1 justify-between">
+				{!optionCheck.includes(question?.type) && (
+					<button
+						onClick={() => optionHandler(question._id)}
+						className="bg-purple-900 px-4 ml-5 py-1 mt-3 text-white rounded-md"
+					>
+						add option
+					</button>
+				)}
+				<RequiredButton />
+			</div>
 
 			{question?.options.length === 0 && question?.type === "shortAnswer" && (
 				<p className="mt-5 pb-2 ml-5 border-b-2 border-dotted border-gray-600">
