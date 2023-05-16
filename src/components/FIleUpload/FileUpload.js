@@ -2,7 +2,9 @@ import React, { useRef } from "react";
 //
 const FileUpload = ({ question, index }) => {
 	const fileInputRef = useRef(null);
-	const handleInputChange = () => {};
+	const handleInputChange = (event) => {
+		console.log(event.target.files[0]);
+	};
 	const handleButtonClick = () => {
 		fileInputRef.current.click();
 	};
@@ -12,6 +14,7 @@ const FileUpload = ({ question, index }) => {
 				<>
 					<h3 className="text-xl mt-4 mb-2 font-semibold capitalize">
 						{index}. {question.title}
+						{question?.isRequired && <span className="text-red-500">*</span>}
 					</h3>
 					<hr />
 				</>

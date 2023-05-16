@@ -8,14 +8,14 @@ const queryClient = new QueryClient();
 
 function App() {
 	return (
-		<AuthProvider>
-			<EventProvider>
-				<QueryClientProvider client={queryClient}>
+		<QueryClientProvider client={queryClient}>
+			<AuthProvider>
+				<EventProvider>
 					<RouterProvider router={router} />
-				</QueryClientProvider>
-				<Toaster />
-			</EventProvider>
-		</AuthProvider>
+					<Toaster />
+				</EventProvider>
+			</AuthProvider>
+		</QueryClientProvider>
 	);
 }
 

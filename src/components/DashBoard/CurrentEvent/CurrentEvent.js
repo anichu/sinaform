@@ -1,12 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CoverForm from "../CoverForm/CoverForm";
-import { Link, useNavigate } from "react-router-dom";
-import Time from "../../Time/Time";
-import { useEffect } from "react";
+import { endEventCount } from "../../../utils/event/functions";
+import MilliToTime from "../../MilliToTime/MilliToTime";
 
-const ExpiredEvent = ({ event }) => {
-	const navigate = useNavigate();
-
+const CurrentEvent = ({ event }) => {
+	const endEvent = endEventCount(event?.endEvent);
 	return (
 		<Link
 			to={`event/${event._id}`}
@@ -23,10 +22,17 @@ const ExpiredEvent = ({ event }) => {
 				<h3 className="text-sm text-justify capitalize break-words">
 					{event?.title}
 				</h3>
-				<Time time={event?.createdAt} />
+
+				{endEvent > 0 && (
+					<MilliToTime
+						diff={endEvent}
+						previousDate={event?.endEvent}
+						level="END"
+					/>
+				)}
 			</div>
 		</Link>
 	);
 };
 
-export default ExpiredEvent;
+export default CurrentEvent;

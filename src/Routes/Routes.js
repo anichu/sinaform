@@ -17,11 +17,7 @@ export const router = createBrowserRouter([
 		children: [
 			{
 				path: "/",
-				element: (
-					<PrivateRoute>
-						<DashBoard />
-					</PrivateRoute>
-				),
+				element: <DashBoard />,
 			},
 			{
 				path: "/event/questions/:id",

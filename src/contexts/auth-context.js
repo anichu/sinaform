@@ -23,7 +23,12 @@ const AuthProvider = ({ children }) => {
 
 	useEffect(() => {
 		async function init() {
-			const userData = JSON.parse(getUserFromCookie());
+			const userDataJson = getUserFromCookie();
+			if (!userDataJson) {
+				setUserLoading(false);
+				return;
+			}
+			const userData = JSON.parse(userDataJson);
 			console.log(userData);
 			setUser(userData);
 		}
@@ -44,7 +49,7 @@ const AuthProvider = ({ children }) => {
 		userLoading,
 		setUserLoading,
 	};
-
+	console.log({ userLoading });
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 

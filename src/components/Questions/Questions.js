@@ -7,6 +7,7 @@ import { updateEvent } from "../../utils/event/https";
 const Questions = () => {
 	const { setEvent, event, setEventSaveLoading } = useContext(EventContext);
 	const [titles, setTitles] = useState({});
+	const [requires, setRequires] = useState({});
 
 	const deleteHandler = async (id) => {
 		const questions = event.questions;
@@ -42,6 +43,8 @@ const Questions = () => {
 						deleteHandler={deleteHandler}
 						index={index + 1}
 						key={index}
+						requires={requires}
+						setRequires={setRequires}
 					/>
 				))}
 		</div>

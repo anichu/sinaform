@@ -61,9 +61,23 @@ export const getQuestions = async (id) => {
 	}
 };
 
-export const allEvents = async (userId) => {
+export const allEvents = async () => {
 	try {
-		const data = await axios.get(DEFAULT_URL + `event/all/${userId}`);
+		const data = await axios.get(DEFAULT_URL + `event/`);
+		return {
+			success: true,
+			data: data?.data,
+		};
+	} catch (error) {
+		return {
+			success: false,
+			message: error.response?.data?.message || error?.message,
+		};
+	}
+};
+export const allEventsByUser = async (_id) => {
+	try {
+		const data = await axios.get(DEFAULT_URL + `event/all/${_id}`);
 		return {
 			success: true,
 			data: data?.data,

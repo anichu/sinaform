@@ -18,6 +18,11 @@ const QuestionsHeader = ({ title, coverImage, description }) => {
 				<hr />
 				<p className="text-[16px] mt-2">{description}</p>
 			</div>
+			<div>
+				<p className="text-red-700 font-semibold">
+					* Indicates required question
+				</p>
+			</div>
 		</header>
 	);
 };

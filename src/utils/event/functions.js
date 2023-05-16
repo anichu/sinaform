@@ -1,8 +1,22 @@
-export const upcomingDate = (date) => {
+export const currentDate = (startDate, endDate) => {
+	const currDate = new Date();
+	const start = new Date(startDate);
+	const end = new Date(endDate);
+	return currDate >= start && currDate <= end;
+};
+export const upcomingDate = (startDate, endDate) => {
+	const currDate = new Date();
+	const start = new Date(startDate);
+	const end = new Date(endDate);
+	console.log("sina-up", currDate >= start && currDate <= end);
+	return end >= currDate && !currentDate(startDate, endDate);
+};
+
+export const expiredDate = (date) => {
 	const currDate = new Date();
 	const targetDate = new Date(date);
-
-	return targetDate >= currDate;
+	console.log(currDate > targetDate);
+	return currDate > targetDate;
 };
 
 export const startEventCount = (startDate) => {

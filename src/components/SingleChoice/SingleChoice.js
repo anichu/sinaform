@@ -1,17 +1,33 @@
 import React, { useState } from "react";
 import "./SingleChoice.css";
-const SingleChoice = ({ question, index }) => {
+const SingleChoice = ({ question, index, setResponses, responses }) => {
 	const [selectedAnswer, setSelectedAnswer] = useState("");
 
-	function handleChange(event) {
-		setSelectedAnswer(event.target.value);
-	}
+	const handleChange = (event) => {
+		setResponses(() => {
+			return {
+				...responses,
+				[question?._id]: event.target.value,
+			};
+		});
+	};
+
+	const clearTextHandler = () => {
+		setResponses((prev) => {
+			return {
+				...prev,
+				[question?._id]: "",
+			};
+		});
+	};
+	console.log(responses);
 	return (
 		<div className="border-2 bg-gray-300 border-gray-400 rounded-md shadow-md p-5 mt-5">
 			{question && (
 				<>
 					<h1 className="text-xl mt-4 mb-2 font-semibold capitalize">
-						{index}. {question.title}
+						{index}. {question.title}{" "}
+						{question?.isRequired && <span className="text-red-500">*</span>}
 					</h1>
 					<hr />
 				</>
@@ -21,25 +37,25 @@ const SingleChoice = ({ question, index }) => {
 				question.options.map((option, index) => {
 					return (
 						<div key={index} className="flex items-center my-2 ml-5">
-							<label class="radio-container">
+							<label className="radio-container">
 								{option.name}
 								<input
 									type="radio"
-									name="fruit"
+									name={question._id}
 									value={option.name}
-									checked={selectedAnswer === option.name}
+									checked={responses[question._id] === option.name}
 									onChange={handleChange}
 									className="mr-2  checked:bg-blue-800 ring-offset-0"
 								/>
-								<span class="radio-checkmark"></span>
+								<span className="radio-checkmark"></span>
 							</label>
 						</div>
 					);
 				})}
-			{selectedAnswer && (
+			{responses[question._id] && (
 				<div className="text-right  ">
 					<span
-						onClick={() => setSelectedAnswer("")}
+						onClick={clearTextHandler}
 						className="cursor-pointer font-semibold  text-purple-950  px-4 py-2"
 					>
 						Clear response

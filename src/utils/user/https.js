@@ -16,3 +16,18 @@ export const loginUser = async (userData) => {
 		};
 	}
 };
+
+export const registerUser = async (registerData) => {
+	try {
+		const data = await axios.post(DEFAULT_URL + "user/signup/", registerData);
+		return {
+			success: true,
+			data: data?.data,
+		};
+	} catch (error) {
+		return {
+			success: false,
+			message: error.response?.data?.message || error?.message,
+		};
+	}
+};

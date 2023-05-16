@@ -1,19 +1,48 @@
-import React, { useState } from "react";
+import React from "react";
 import "./MultipleChoice.css";
 
-const MultipleChoice = ({ question, index, dashboard }) => {
-	const [selectedOptions, setSelectedOptions] = useState([]);
-
+const MultipleChoice = ({
+	question,
+	index,
+	dashboard,
+	responses,
+	setResponses,
+}) => {
 	const handleOptionChange = (event) => {
 		const value = event.target.value;
 
-		if (selectedOptions.includes(value)) {
-			setSelectedOptions(selectedOptions.filter((option) => option !== value));
+		if (
+			responses[question._id] !== undefined &&
+			responses[question._id]?.includes(value)
+		) {
+			setResponses((prev) => {
+				return {
+					...prev,
+					[question._id]: responses[question._id].filter(
+						(option) => option !== value
+					),
+				};
+			});
 		} else {
-			setSelectedOptions([...selectedOptions, value]);
+			setResponses((prev) => {
+				return {
+					...prev,
+					[question._id]:
+						responses[question._id] !== undefined
+							? [...responses[question._id], value]
+							: [value],
+				};
+			});
 		}
+	};
 
-		console.log(selectedOptions);
+	const clearInputHandler = () => {
+		setResponses((prev) => {
+			return {
+				...prev,
+				[question._id]: [],
+			};
+		});
 	};
 	return (
 		<div
@@ -27,6 +56,7 @@ const MultipleChoice = ({ question, index, dashboard }) => {
 						} mt-4 mb-2 font-semibold capitalize`}
 					>
 						{index}. {question.title}
+						{question?.isRequired && <span className="text-red-500">*</span>}
 					</h1>
 					<hr />
 				</>
@@ -41,7 +71,10 @@ const MultipleChoice = ({ question, index, dashboard }) => {
 								<input
 									type="checkbox"
 									value={option._id}
-									checked={selectedOptions.includes(option._id)}
+									checked={
+										responses[question._id]?.length > 0 &&
+										responses[question._id]?.includes(option._id)
+									}
 									onChange={handleOptionChange}
 								/>
 								<span className="checkmark"></span>
@@ -50,10 +83,10 @@ const MultipleChoice = ({ question, index, dashboard }) => {
 					);
 				})}
 
-			{selectedOptions.length > 0 && (
+			{responses[question._id]?.length > 0 && (
 				<div className="text-right mt-5 ">
 					<span
-						onClick={() => setSelectedOptions([])}
+						onClick={clearInputHandler}
 						className="cursor-pointer font-medium text-purple-950  px-4 py-2"
 					>
 						Clear response

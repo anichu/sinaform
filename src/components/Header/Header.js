@@ -12,7 +12,7 @@ const Header = ({ _id }) => {
 	};
 
 	return (
-		<div className="bg-purple-950 top-0 shadow-md flex justify-between fixed w-full z-40 border-purple-950 border-2  rounded-sm">
+		<div className="fixed top-0 z-40 flex justify-between w-full border-2 rounded-sm shadow-md bg-purple-950 border-purple-950">
 			<div></div>
 			<ul className="flex justify-center ">
 				<li className="mx-5 text-[16px] cursor-pointer border-0 border-b-2 border-transparent   h-full block hover:border-purple-600 hover:text-purple-300 py-2  text-white">
@@ -44,7 +44,7 @@ const Header = ({ _id }) => {
 				<NavLink
 					target="_blank"
 					to={`/event/questions/${_id}`}
-					className="cursor-pointer w-8 text-white hover:text-purple-300 mr-3"
+					className="w-8 mr-3 text-white cursor-pointer hover:text-purple-300"
 					title="Preview"
 				>
 					<FaEye />
@@ -52,7 +52,7 @@ const Header = ({ _id }) => {
 				<span
 					target="_blank"
 					to={`/event/questions/${_id}`}
-					className="cursor-pointer w-8 text-white hover:text-purple-300"
+					className="w-8 text-white cursor-pointer hover:text-purple-300"
 					title="Share"
 					onClick={handleCopyLink}
 				>

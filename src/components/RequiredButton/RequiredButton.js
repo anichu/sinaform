@@ -1,20 +1,19 @@
 import React from "react";
 import "./RequiredButton.css";
-import { useState } from "react";
 
-const RequiredButton = () => {
-	const [isOn, setIsOn] = useState(false);
-
+const RequiredButton = ({ requiredButtonHandler, _id, requires }) => {
 	function handleClick() {
-		setIsOn(!isOn);
+		requiredButtonHandler(_id);
 	}
 
+	// console.log(requires);
+
 	return (
-		<div className="flex mt-2" onClick={handleClick}>
-			<p className="mr-1 text-purple-950 font-medium">Required</p>
+		<div className="flex mt-2" onClick={() => handleClick(_id)}>
+			<p className="mr-1 font-medium text-center text-purple-950">Required</p>
 			<div className="switch">
-				<div className={`switch-toggle ${isOn ? "on" : "off"}`}>
-					{isOn ? "" : ""}
+				<div className={`switch-toggle ${requires[_id] ? "on" : "off"}`}>
+					{requires[_id] ? "" : ""}
 				</div>
 			</div>
 		</div>

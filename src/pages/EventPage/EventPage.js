@@ -43,7 +43,7 @@ const EventPage = () => {
 			title: "",
 			options: [],
 			type: inputType,
-			required: false,
+			isRequired: false,
 		};
 		const questions = event.questions;
 		questions.push(createQuestion);
@@ -101,7 +101,7 @@ const EventPage = () => {
 							<Select
 								options={options}
 								isSearchable={false}
-								className="mt-2  border-r-0 rounded-none"
+								className="mt-2 border-r-0 rounded-none"
 								autoFocus={true}
 								onChange={selectChangeHandler}
 								styles={{
@@ -117,7 +117,7 @@ const EventPage = () => {
 						</div>
 
 						<button
-							className="flex  items-center h-10 mt-2  py-2 px-4 rounded-md rounded-l-none bg-purple-950"
+							className="flex items-center h-10 px-4 py-2 mt-2 rounded-md rounded-l-none bg-purple-950"
 							onClick={submitButton}
 						>
 							<FaPlus className="w-6 h-6 text-white" />

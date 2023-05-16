@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import "./SignupPage.css"; // Import the CSS file for styling
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { registerUser } from "../../utils/user/https";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/auth-context";
+import { setUserToCookie } from "../../utils/user/functions";
+import { toast } from "react-hot-toast";
 
 const Signup = () => {
+	const { setUser, setUserLoading } = useContext(AuthContext);
+	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		username: "",
 		email: "",
@@ -14,11 +21,23 @@ const Signup = () => {
 		setFormData({ ...formData, [name]: value });
 	};
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-		// Perform signup logic with formData
-		console.log("Signup form data:", formData);
-		// Reset form data
+		//TODO:: Perform signup logic with formData
+		// console.log("Signup form data:", formData);
+		const data = await registerUser(formData);
+		if (data?.success) {
+			setUser(data?.data);
+			setUserToCookie(data.data);
+			toast.success("User login 🚀");
+			navigate("/");
+		} else {
+			toast.error(data?.message);
+		}
+		// console.log(data);
+		// TODO::USER LOADING FALSE
+		setUserLoading(false);
+		//TODO:: Reset form data
 		setFormData({
 			username: "",
 			email: "",
@@ -27,10 +46,10 @@ const Signup = () => {
 	};
 
 	return (
-		<div className="signup-container mt-20 ">
-			<form className="signup-form w-1/2 bg-gray-400" onSubmit={handleSubmit}>
-				<h1 className="text-center text-2xl ">Sign up</h1>
-				<label className="text-left block">Username:</label>
+		<div className="mt-20 signup-container ">
+			<form className="w-1/2 bg-gray-400 signup-form" onSubmit={handleSubmit}>
+				<h1 className="text-2xl text-center ">Sign up</h1>
+				<label className="block text-left">Username:</label>
 				<input
 					type="text"
 					name="username"
@@ -54,7 +73,7 @@ const Signup = () => {
 				<button className="bg-blue-800 button" type="submit">
 					Sign up
 				</button>
-				<div className="signin-link mt-5 ">
+				<div className="mt-5 signin-link ">
 					<span className="mr-2">Already have an account?</span>
 					<Link to="/login" className="text-blue-800 hover:underline">
 						Sign In

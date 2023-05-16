@@ -4,11 +4,10 @@ import { Link } from "react-router-dom";
 import Time from "../../Time/Time";
 import { endEventCount, startEventCount } from "../../../utils/event/functions";
 import MilliToTime from "../../MilliToTime/MilliToTime";
+import { useEffect } from "react";
 const UpcomingEvent = ({ event }) => {
 	const startEvent = startEventCount(event?.startEvent);
 	const endEvent = endEventCount(event?.endEvent);
-	// console.log({ startEvent });
-	// console.log({ endEvent });
 
 	return (
 		<Link
@@ -23,7 +22,7 @@ const UpcomingEvent = ({ event }) => {
 				description={event?.description}
 			/>
 			<div className="p-2 rounded-md">
-				<h3 className="mb-2 text-xl text-justify capitalize break-words">
+				<h3 className="mb-2 text-sm text-justify capitalize break-words">
 					{event?.title}
 				</h3>
 				{startEvent > 0 ? (
