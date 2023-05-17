@@ -75,7 +75,10 @@ const MultipleChoice = ({
 										responses[question._id]?.length > 0 &&
 										responses[question._id]?.includes(option._id)
 									}
-									required={question?.isRequired ? true : false}
+									required={
+										question?.isRequired &&
+										responses[question._id]?.length === 0
+									}
 									onChange={handleOptionChange}
 									className="required:text-red-300"
 								/>

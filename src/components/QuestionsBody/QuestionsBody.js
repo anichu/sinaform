@@ -5,21 +5,39 @@ import MultipleChoice from "../MultipleChoice/MultipleChoice";
 import ShortAnswer from "../ShortAnswer/ShortAnswer";
 import FileUpload from "../FIleUpload/FileUpload";
 import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/auth-context";
+import { createResponse, updateEvent } from "../../utils/event/https";
 
-const QuestionsBody = ({ questions, dashboard }) => {
+const QuestionsBody = ({ questions, dashboard, data }) => {
 	const [responses, setResponses] = useState([]);
-	const requires = [];
-	const submitHandler = (e) => {
+	const { user } = useContext(AuthContext);
+	const submitHandler = async (e) => {
 		e.preventDefault();
+
 		console.log(responses);
+
+		const insertResponse = {
+			user: user?._id,
+			responses: responses,
+			createdAt: new Date(),
+		};
+
+		const updatedData = await createResponse(data?._id, insertResponse);
+		console.log(
+			"🚀 ~ file: Question.js:44 ~ onBlurHandler ~ event:",
+			updatedData
+		);
 	};
+
+	const clearFormHandler = () => {
+		setResponses([]);
+	};
+
 	return (
 		<form className="" onSubmit={submitHandler}>
 			{questions &&
 				questions.map((question, index) => {
-					if (question.isRequired) {
-						requires.push(question?._id);
-					}
 					if (question.type === "dropDown") {
 						return (
 							<DropDown
@@ -79,7 +97,10 @@ const QuestionsBody = ({ questions, dashboard }) => {
 				<button className="px-5 py-1 text-white transition-all duration-300 border-2 rounded-md shadow-md bg-purple-950 hover:bg-purple-900 border-purple-950 hover:border-purple-900">
 					Submit
 				</button>
-				<p className="font-semibold cursor-pointer text-purple-950">
+				<p
+					onClick={clearFormHandler}
+					className="font-semibold cursor-pointer text-purple-950"
+				>
 					Clear form
 				</p>
 			</div>

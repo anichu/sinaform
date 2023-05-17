@@ -9,6 +9,8 @@ import { getSingleEvent } from "../utils/event/https";
 import QuestionsPage from "../pages/QuestionsPage/QuestionsPage";
 import EventLayout from "../layout/EventLayout";
 import EventResponsePage from "../pages/EventResponsePage/EventResponsePage";
+import Responded from "../components/Responded/Responded";
+import Response from "../components/Response/Response";
 
 export const router = createBrowserRouter([
 	{
@@ -49,5 +51,13 @@ export const router = createBrowserRouter([
 				loader: async ({ params }) => getSingleEvent(params.id),
 			},
 		],
+	},
+	{
+		path: "/event/responded/recorded",
+		element: <Response />,
+	},
+	{
+		path: "/event/responded/:id",
+		element: <Responded />,
 	},
 ]);

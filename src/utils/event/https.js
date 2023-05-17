@@ -89,3 +89,21 @@ export const allEventsByUser = async (_id) => {
 		};
 	}
 };
+
+export const createResponse = async (id, response) => {
+	try {
+		const data = await axios.put(
+			DEFAULT_URL + `event/response/${id}`,
+			response
+		);
+		return {
+			success: true,
+			data: data?.data,
+		};
+	} catch (error) {
+		return {
+			success: false,
+			message: error.response?.data?.message || error?.message,
+		};
+	}
+};

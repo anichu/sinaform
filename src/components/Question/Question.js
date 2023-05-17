@@ -47,7 +47,6 @@ const Question = ({
 		if (question?.type === "fileUpload") {
 			setSelectedFileType(question?.fileType);
 		}
-		console.log("anis file type");
 	}, [question?.fileType, question?.type]);
 
 	const changeHandler = (event) => {
