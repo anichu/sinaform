@@ -9,10 +9,10 @@ const FileUpload = ({ question, index }) => {
 		fileInputRef.current.click();
 	};
 	return (
-		<div className="border-2 bg-gray-300 border-gray-400 rounded-md shadow-md p-5 mt-5">
+		<div className="p-5 mt-5 bg-gray-300 border-2 border-gray-400 rounded-md shadow-md">
 			{question && (
 				<>
-					<h3 className="text-xl mt-4 mb-2 font-semibold capitalize">
+					<h3 className="mt-4 mb-2 text-xl font-semibold capitalize">
 						{index}. {question.title}
 						{question?.isRequired && <span className="text-red-500">*</span>}
 					</h3>
@@ -30,10 +30,11 @@ const FileUpload = ({ question, index }) => {
 					ref={fileInputRef}
 					style={{ display: "none" }}
 					onChange={handleInputChange}
+					required={question?.isRequired ? true : false}
 				/>
 				<div className="flex items-center">
 					<span
-						className="shadow-md h-10 bg-gray-500 cursor-pointer  text-blue-800 px-5 py-2 rounded-md"
+						className="h-10 px-5 py-2 text-blue-800 bg-gray-500 rounded-md shadow-md cursor-pointer"
 						onClick={handleButtonClick}
 					>
 						Add File

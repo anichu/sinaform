@@ -22,10 +22,10 @@ const SingleChoice = ({ question, index, setResponses, responses }) => {
 	};
 	console.log(responses);
 	return (
-		<div className="border-2 bg-gray-300 border-gray-400 rounded-md shadow-md p-5 mt-5">
+		<div className="p-5 mt-5 bg-gray-300 border-2 border-gray-400 rounded-md shadow-md">
 			{question && (
 				<>
-					<h1 className="text-xl mt-4 mb-2 font-semibold capitalize">
+					<h1 className="mt-4 mb-2 text-xl font-semibold capitalize">
 						{index}. {question.title}{" "}
 						{question?.isRequired && <span className="text-red-500">*</span>}
 					</h1>
@@ -42,10 +42,11 @@ const SingleChoice = ({ question, index, setResponses, responses }) => {
 								<input
 									type="radio"
 									name={question._id}
+									required={question?.isRequired ? true : false}
 									value={option.name}
 									checked={responses[question._id] === option.name}
 									onChange={handleChange}
-									className="mr-2  checked:bg-blue-800 ring-offset-0"
+									className="mr-2 checked:bg-blue-800 ring-offset-0"
 								/>
 								<span className="radio-checkmark"></span>
 							</label>
@@ -53,10 +54,10 @@ const SingleChoice = ({ question, index, setResponses, responses }) => {
 					);
 				})}
 			{responses[question._id] && (
-				<div className="text-right  ">
+				<div className="text-right ">
 					<span
 						onClick={clearTextHandler}
-						className="cursor-pointer font-semibold  text-purple-950  px-4 py-2"
+						className="px-4 py-2 font-semibold cursor-pointer text-purple-950"
 					>
 						Clear response
 					</span>

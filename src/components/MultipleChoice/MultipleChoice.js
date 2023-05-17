@@ -65,7 +65,7 @@ const MultipleChoice = ({
 			{question &&
 				question.options.map((option, index) => {
 					return (
-						<div key={index} className="flex items-center my-2 ml-5">
+						<div key={index} className="flex items-center my-2 ml-5 ">
 							<label className="checkbox-container">
 								{option.name}
 								<input
@@ -75,7 +75,9 @@ const MultipleChoice = ({
 										responses[question._id]?.length > 0 &&
 										responses[question._id]?.includes(option._id)
 									}
+									required={question?.isRequired ? true : false}
 									onChange={handleOptionChange}
+									className="required:text-red-300"
 								/>
 								<span className="checkmark"></span>
 							</label>
@@ -84,10 +86,10 @@ const MultipleChoice = ({
 				})}
 
 			{responses[question._id]?.length > 0 && (
-				<div className="text-right mt-5 ">
+				<div className="mt-5 text-right ">
 					<span
 						onClick={clearInputHandler}
-						className="cursor-pointer font-medium text-purple-950  px-4 py-2"
+						className="px-4 py-2 font-medium cursor-pointer text-purple-950"
 					>
 						Clear response
 					</span>

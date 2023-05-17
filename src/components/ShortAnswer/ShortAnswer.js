@@ -21,10 +21,10 @@ const ShortAnswer = ({ question, index, setResponses, responses }) => {
 
 	const onBlurTextHandler = (event) => {};
 	return (
-		<div className="border-2 bg-gray-300 border-gray-400 rounded-md shadow-md p-5 mt-5">
+		<div className="p-5 mt-5 bg-gray-300 border-2 border-gray-400 rounded-md shadow-md">
 			{question && (
 				<>
-					<h1 className="text-xl mt-4 mb-2 font-semibold capitalize">
+					<h1 className="mt-4 mb-2 text-xl font-semibold capitalize">
 						{index}. {question.title}{" "}
 						{question?.isRequired && <span className="text-red-500">*</span>}
 					</h1>
@@ -44,13 +44,14 @@ const ShortAnswer = ({ question, index, setResponses, responses }) => {
 					value={responses[question?._id]}
 					onChange={changeTextHandler}
 					onBlur={onBlurTextHandler}
+					required={question?.isRequired ? true : false}
 				/>
 
 				{responses[question?._id]?.length > 0 && (
-					<div className="text-right mt-5 ">
+					<div className="mt-5 text-right ">
 						<span
 							onClick={clearTextHandler}
-							className="cursor-pointer font-medium text-purple-950  px-4 py-2"
+							className="px-4 py-2 font-medium cursor-pointer text-purple-950"
 						>
 							Clear response
 						</span>

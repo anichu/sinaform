@@ -17,7 +17,9 @@ const Question = ({
 }) => {
 	const optionCheck = ["fileUpload", "shortAnswer"];
 	const [names, setNames] = useState({});
+	const [selectedFileType, setSelectedFileType] = useState("");
 	const { event, setEvent, setEventSaveLoading } = useContext(EventContext);
+
 	// TODO::SET TITLE FROM DATA BASE
 	useEffect(() => {
 		setTitles((prev) => {
@@ -38,6 +40,15 @@ const Question = ({
 			};
 		});
 	}, [setRequires, question]);
+
+	// TODO:: SET FILE TYPE WHETHER IMAGE OR NOT
+
+	useEffect(() => {
+		if (question?.type === "fileUpload") {
+			setSelectedFileType(question?.fileType);
+		}
+		console.log("anis file type");
+	}, [question?.fileType, question?.type]);
 
 	const changeHandler = (event) => {
 		setTitles((prev) => {
@@ -203,6 +214,36 @@ const Question = ({
 		setEventSaveLoading(false);
 	};
 
+	const selectedFileTypesHandler = async (e, _id) => {
+		const value = e.target.value;
+		setSelectedFileType(value);
+		console.log(value);
+		const { questions } = event;
+		const idx = questions.findIndex((question) => question._id === _id);
+		if (idx < 0) {
+			return;
+		}
+		let selectedQuestion = questions[idx];
+		selectedQuestion = {
+			...selectedQuestion,
+			fileType: value,
+		};
+		questions[idx] = selectedQuestion;
+
+		let alteredEvent = {};
+		setEvent((prev) => {
+			alteredEvent = {
+				...event,
+				questions: questions,
+			};
+			return alteredEvent;
+		});
+
+		setEventSaveLoading(true);
+		const me = await updateEvent(event?._id, alteredEvent);
+		console.log("🚀 ~ file: Question.js:44 ~ onBlurHandler ~ event:", me);
+		setEventSaveLoading(false);
+	};
 	return (
 		<div
 			id={question._id}
@@ -268,10 +309,38 @@ const Question = ({
 			)}
 
 			{question?.options.length === 0 && question?.type === "fileUpload" && (
-				<div className="w-full mt-4">
-					<span className="border-2 bg-gray-400 px-4 py-2 border-gray-400 shadow-lg rounded-md">
+				<div className="flex flex-row items-center justify-between w-full mt-4">
+					<span className="px-4 py-2 bg-gray-400 border-2 border-gray-400 rounded-md shadow-lg">
 						file Upload
 					</span>
+					<div className="">
+						<label className="flex-row items-center mx-2">
+							<input
+								type="radio"
+								className="mb-0 text-blue-500 form-radio"
+								name="radio"
+								onChange={(event) =>
+									selectedFileTypesHandler(event, question?._id)
+								}
+								checked={selectedFileType === "image"}
+								value="image"
+							/>
+							<span className="ml-1">image</span>
+						</label>
+						<label className="flex-row items-center">
+							<input
+								type="radio"
+								className="mb-0 text-blue-500 form-radio"
+								name="radio"
+								onChange={(event) =>
+									selectedFileTypesHandler(event, question?._id)
+								}
+								value="pdf"
+								checked={selectedFileType === "pdf"}
+							/>
+							<span className="ml-1">pdf</span>
+						</label>
+					</div>
 				</div>
 			)}
 
