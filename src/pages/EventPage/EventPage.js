@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import EventHeader from "../../components/EventHeader/EventHeader";
 import { FaPlus } from "react-icons/fa";
 import Select from "react-select";
@@ -7,14 +7,14 @@ import { v4 as uuidv4 } from "uuid";
 import { EventContext } from "../../contexts/event-context";
 import Questions from "../../components/Questions/Questions";
 import { updateEvent } from "../../utils/event/https";
-
-import Header from "../../components/Header/Header";
-import RequiredButton from "../../components/RequiredButton/RequiredButton";
+import { AuthContext } from "../../contexts/auth-context";
 
 const EventPage = () => {
 	const [inputType, setInputType] = useState("");
 	const eventData = useLoaderData();
+	const { user } = useContext(AuthContext);
 	const { id } = useParams();
+	const navigate = useNavigate();
 	const { setEvent, event, setEventSaveLoading, eventSaveLoading } =
 		useContext(EventContext);
 
@@ -23,6 +23,10 @@ const EventPage = () => {
 			setEvent(eventData?.data);
 		}
 	}, [eventData, setEvent]);
+
+	if (user?._id !== event?.user) {
+		navigate("/");
+	}
 
 	const options = [
 		{ value: "multipleChoice", label: "multiple choices" },
@@ -74,10 +78,11 @@ const EventPage = () => {
 		setEventSaveLoading(false);
 	};
 
+	console.log(event);
+
 	return (
-		<div id="screenshot-component">
+		<div>
 			<div>
-				{/* <Header _id={id} /> */}
 				<EventHeader
 					title={event?.title}
 					description={event?.description}
@@ -85,7 +90,7 @@ const EventPage = () => {
 				/>
 				<Questions />
 
-				<div className="w-[70%] flex justify-end mx-auto my-4 bg-gray-300 p-3 rounded-md shadow-md">
+				<div className="lg:w-[70%]  md:w-[80%] w-[95%] flex justify-end mx-auto my-4 bg-gray-300 p-3 rounded-md shadow-md">
 					{/* TODO::SAVE BUTTON  */}
 					<button
 						onClick={saveButtonHandler}

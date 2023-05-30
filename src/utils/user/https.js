@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const DEFAULT_URL = "http://localhost:5050/api/";
+export const DEFAULT_URL = "https://sina-for.vercel.app/api/";
 
 export const loginUser = async (userData) => {
 	try {

@@ -11,6 +11,7 @@ import EventLayout from "../layout/EventLayout";
 import EventResponsePage from "../pages/EventResponsePage/EventResponsePage";
 import Responded from "../components/Responded/Responded";
 import Response from "../components/Response/Response";
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 
 export const router = createBrowserRouter([
 	{
@@ -23,7 +24,12 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: "/event/questions/:id",
-				element: <QuestionsPage />,
+				element: (
+					<PrivateRoute>
+						{" "}
+						<QuestionsPage />
+					</PrivateRoute>
+				),
 				loader: async ({ params }) => getSingleEvent(params.id),
 			},
 			{
@@ -42,12 +48,20 @@ export const router = createBrowserRouter([
 		children: [
 			{
 				path: "/event/:id",
-				element: <EventPage />,
+				element: (
+					<PrivateRoute>
+						<EventPage />
+					</PrivateRoute>
+				),
 				loader: async ({ params }) => getSingleEvent(params.id),
 			},
 			{
 				path: "/event/response/:id",
-				element: <EventResponsePage />,
+				element: (
+					<PrivateRoute>
+						<EventResponsePage />
+					</PrivateRoute>
+				),
 				loader: async ({ params }) => getSingleEvent(params.id),
 			},
 		],
@@ -59,5 +73,9 @@ export const router = createBrowserRouter([
 	{
 		path: "/event/responded/:id",
 		element: <Responded />,
+	},
+	{
+		path: "*",
+		element: <NotFoundPage />,
 	},
 ]);

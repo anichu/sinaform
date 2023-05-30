@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import QuestionsHeader from "../../components/QuestionsHeader/QuestionsHeader";
 import QuestionsBody from "../../components/QuestionsBody/QuestionsBody";
 import { useQuery } from "@tanstack/react-query";
@@ -10,7 +10,6 @@ const QuestionPage = () => {
 	const { id } = useParams();
 	const { user } = useContext(AuthContext);
 	const navigate = useNavigate();
-	// const { data } = useLoaderData();
 	const { isLoading, data } = useQuery({
 		queryKey: ["event", id],
 		queryFn: async () => {
@@ -37,7 +36,7 @@ const QuestionPage = () => {
 	}
 
 	return (
-		<div className="w-[60%] mb-10 mx-auto">
+		<div className="lg:w-[60%] md:w-[80%] w-[95%] mb-10 mx-auto">
 			<QuestionsHeader
 				title={data?.title}
 				coverImage={data?.coverImage}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SignupPage.css"; // Import the CSS file for styling
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { registerUser } from "../../utils/user/https";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/auth-context";
@@ -10,6 +10,8 @@ import { toast } from "react-hot-toast";
 const Signup = () => {
 	const { setUser, setUserLoading } = useContext(AuthContext);
 	const navigate = useNavigate();
+	const location = useLocation();
+	const from = location?.state?.from?.pathname || "/";
 	const [formData, setFormData] = useState({
 		username: "",
 		email: "",
@@ -30,7 +32,7 @@ const Signup = () => {
 			setUser(data?.data);
 			setUserToCookie(data.data);
 			toast.success("User login 🚀");
-			navigate("/");
+			navigate(from, { replace: true });
 		} else {
 			toast.error(data?.message);
 		}
@@ -47,7 +49,10 @@ const Signup = () => {
 
 	return (
 		<div className="mt-20 signup-container ">
-			<form className="w-1/2 bg-gray-400 signup-form" onSubmit={handleSubmit}>
+			<form
+				className="sm:w-1/2 w-[90%] bg-gray-400 signup-form"
+				onSubmit={handleSubmit}
+			>
 				<h1 className="text-2xl text-center ">Sign up</h1>
 				<label className="block text-left">Username:</label>
 				<input

@@ -21,7 +21,7 @@ const CustomModal = ({ isOpen, handleClose }) => {
 			top: "50%",
 			left: "50%",
 			right: "auto",
-			width: "60%",
+			// width: "60%",
 			bottom: "auto",
 			transform: "translate(-50%, -50%)",
 			border: "none",
@@ -115,6 +115,7 @@ const CustomModal = ({ isOpen, handleClose }) => {
 				onRequestClose={handleClose}
 				contentLabel="create event"
 				style={customStyles}
+				className="lg:w-[70%]  md:w-[80%] w-[95%]"
 			>
 				<div className=" rounded-lg bg-[#130f40] w-full p-5 ">
 					<h2 className="text-3xl text-center mb-5 text-white  font-semibold">
@@ -215,6 +216,7 @@ const CustomModal = ({ isOpen, handleClose }) => {
 							<button
 								type="submit"
 								onClick={submitHandler}
+								disabled={fileUploadLoading}
 								className="bg-white shadow-md hover:bg-gray-200 text-blue-800 px-5 py-2 rounded-md mt-3"
 							>
 								create event

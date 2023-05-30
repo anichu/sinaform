@@ -33,7 +33,7 @@ const DashBoardHeader = () => {
 			<div className="flex items-center">
 				<Link
 					to="/"
-					className="px-3 mr-20 text-xl font-bold text-white rounded-md "
+					className="px-3 sm:mr-20 mr-10 text-xl font-bold text-white rounded-md "
 				>
 					Event
 				</Link>
@@ -46,7 +46,7 @@ const DashBoardHeader = () => {
 							}`}
 						>
 							<FaPlus className="w-4 h-4 mr-2 text-white" />
-							<span className="text-sm text-white capitalize hover:underline">
+							<span className="text-sm text-white capitalize">
 								create event
 							</span>
 						</button>
@@ -75,18 +75,12 @@ const DashBoardHeader = () => {
 							{isProfileDropDownOpen && (
 								<div className="absolute right-0 w-40 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 									<div className="py-1">
-										<a
-											href="#"
+										<Link
+											to="/profile"
 											className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
 										>
-											Settings
-										</a>
-										<a
-											href="#"
-											className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-										>
-											Help
-										</a>
+											Profile
+										</Link>
 									</div>
 									<div className="py-1">
 										<span

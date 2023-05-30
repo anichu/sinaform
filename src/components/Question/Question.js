@@ -246,7 +246,7 @@ const Question = ({
 	return (
 		<div
 			id={question._id}
-			className="w-[70%] relative border-2 border-gray-300 bg-gray-300 py-5 px-5 my-3 hover:border-blue-900 shadow-md rounded-md mx-auto"
+			className="lg:w-[70%]  md:w-[80%] w-[95%] relative border-2 border-gray-300 bg-gray-300 py-5 px-5 my-3 hover:border-blue-900 shadow-md rounded-md mx-auto"
 		>
 			<p className="capitalize border-b-2 border-dotted w-[150px]">
 				{question?.type}

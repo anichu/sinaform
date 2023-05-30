@@ -1,15 +1,16 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import Link component from react-router-dom
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { loginUser } from "../../utils/user/https";
 import { AuthContext } from "../../contexts/auth-context";
-import "./LoginPage.css"; // Import the CSS file for styling
+import "./LoginPage.css";
 import { toast } from "react-hot-toast";
 import { setUserToCookie } from "../../utils/user/functions";
 
 const Login = () => {
 	const { setUser } = useContext(AuthContext);
-
 	const navigate = useNavigate();
+	const location = useLocation();
+	const from = location?.state?.from?.pathname || "/";
 	const [formData, setFormData] = useState({
 		email: "",
 		password: "",
@@ -36,7 +37,7 @@ const Login = () => {
 			setUser(data.data);
 			setUserToCookie(data.data);
 			toast.success("User login 🚀");
-			navigate("/");
+			navigate(from, { replace: true });
 		}
 
 		//TODO:: Reset form data
@@ -48,7 +49,10 @@ const Login = () => {
 
 	return (
 		<div className="signup-container mt-20">
-			<form className="signup-form w-1/2 bg-gray-400" onSubmit={handleSubmit}>
+			<form
+				className="signup-form sm:w-1/2 w-[90%] bg-gray-400"
+				onSubmit={handleSubmit}
+			>
 				<h1 className="text-center text-2xl ">Login</h1>
 				<label>
 					Email:
@@ -75,8 +79,7 @@ const Login = () => {
 					<span className="mr-2">Don't have an account? </span>
 					<Link className="text-blue-800 hover:underline" to="/signup">
 						Sign Up
-					</Link>{" "}
-					{/* Link to Sign Up page */}
+					</Link>
 				</div>
 			</form>
 		</div>

@@ -8,15 +8,22 @@ import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/auth-context";
 import { createResponse, updateEvent } from "../../utils/event/https";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const QuestionsBody = ({ questions, dashboard, data }) => {
 	const [responses, setResponses] = useState([]);
+	const navigate = useNavigate();
 	const { user } = useContext(AuthContext);
 	const submitHandler = async (e) => {
 		e.preventDefault();
 
-		console.log(responses);
+		if (!user) {
+			toast.error("Please login to response the event");
+			navigate("/login");
+		}
 
+		console.log(responses);
 		const insertResponse = {
 			user: user?._id,
 			responses: responses,
@@ -28,6 +35,7 @@ const QuestionsBody = ({ questions, dashboard, data }) => {
 			"🚀 ~ file: Question.js:44 ~ onBlurHandler ~ event:",
 			updatedData
 		);
+		navigate(`/event/responded/${data?._id}?q=response`);
 	};
 
 	const clearFormHandler = () => {

@@ -8,7 +8,7 @@ const EventLayout = () => {
 	const { event } = useContext(EventContext);
 	return (
 		<div>
-			<Header _id={event?._id} />
+			<Header _id={event?._id} event={event} />
 			<Outlet />
 		</div>
 	);
