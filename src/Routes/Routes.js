@@ -12,6 +12,7 @@ import EventResponsePage from "../pages/EventResponsePage/EventResponsePage";
 import Responded from "../components/Responded/Responded";
 import Response from "../components/Response/Response";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
+import ProfilePage from "../pages/ProfilePage/ProfilePage";
 
 export const router = createBrowserRouter([
 	{
@@ -26,7 +27,6 @@ export const router = createBrowserRouter([
 				path: "/event/questions/:id",
 				element: (
 					<PrivateRoute>
-						{" "}
 						<QuestionsPage />
 					</PrivateRoute>
 				),
@@ -39,6 +39,14 @@ export const router = createBrowserRouter([
 			{
 				path: "/login",
 				element: <Login />,
+			},
+			{
+				path: "/search",
+				element: <DashBoard />,
+			},
+			{
+				path: "/profile",
+				element: <ProfilePage />,
 			},
 		],
 	},

@@ -46,3 +46,15 @@ input:checked ~ .checkmark:after {
 	-ms-transform: rotate(45deg);
 	transform: rotate(45deg);
 }
+
+.ant-picker.ant-picker-range.css-dev-only-do-not-override-w8mnev {
+	border: 0px solid white !important;
+	border-radius: 0px !important;
+	border-top-left-radius: 5px !important;
+	border-bottom-left-radius: 5px !important;
+}
+
+.ant-btn-primary {
+	background-color: #27c456 !important;
+	border-color: #1f9643e5 !important;
+}

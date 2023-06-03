@@ -6,7 +6,7 @@ import { Link, NavLink } from "react-router-dom";
 const Header = ({ _id, event }) => {
 	const handleCopyLink = () => {
 		navigator.clipboard.writeText(
-			`http://localhost:3000/event/questions/${_id}`
+			`https://daily-event-cc966.web.app/event/questions/${_id}`
 		);
 		toast.success("Link Copied to Share");
 	};
