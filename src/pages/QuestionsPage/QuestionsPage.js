@@ -17,14 +17,14 @@ const QuestionPage = () => {
 			return response.data || null;
 		},
 	});
-	console.log("🚀 ~ file: QuestionsPage.js:20 ~ QuestionPage ~ data:", data);
+	// console.log("🚀 ~ file: QuestionsPage.js:20 ~ QuestionPage ~ data:", data);
 
 	useEffect(() => {
 		if (user && data) {
 			const idx = data.responses.findIndex(
 				(response) => response.user === user._id
 			);
-			console.log(idx);
+			// console.log(idx);
 			if (idx > -1) {
 				navigate(`/event/responded/${id}`);
 			}

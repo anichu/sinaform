@@ -8,14 +8,14 @@ export const upcomingDate = (startDate, endDate) => {
 	const currDate = new Date();
 	const start = new Date(startDate);
 	const end = new Date(endDate);
-	console.log("sina-up", currDate >= start && currDate <= end);
+	// console.log("sina-up", currDate >= start && currDate <= end);
 	return end >= currDate && !currentDate(startDate, endDate);
 };
 
 export const expiredDate = (date) => {
 	const currDate = new Date();
 	const targetDate = new Date(date);
-	console.log(currDate > targetDate);
+	// console.log(currDate > targetDate);
 	return currDate > targetDate;
 };
 

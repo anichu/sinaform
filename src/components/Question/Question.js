@@ -115,7 +115,7 @@ const Question = ({
 
 		setEventSaveLoading(true);
 		const me = await updateEvent(event?._id, alteredEvent);
-		console.log("🚀 ~ file: Question.js:44 ~ onBlurHandler ~ event:", me);
+		// console.log("🚀 ~ file: Question.js:44 ~ onBlurHandler ~ event:", me);
 		setEventSaveLoading(false);
 	};
 
@@ -150,7 +150,7 @@ const Question = ({
 		}
 		setEventSaveLoading(true);
 		const me = await updateEvent(event?._id, alteredEvent);
-		console.log("sina-update-event", me);
+		// console.log("sina-update-event", me);
 		setEventSaveLoading(false);
 	};
 
@@ -167,14 +167,14 @@ const Question = ({
 				...prev,
 				[_id]: isRequired,
 			};
-			console.log(
-				"🚀 ~ file: Question.js:145 ~ setRequires ~ alteredRequires:",
-				alteredRequires
-			);
+			// console.log(
+			// 	"🚀 ~ file: Question.js:145 ~ setRequires ~ alteredRequires:",
+			// 	alteredRequires
+			// );
 			return alteredRequires;
 		});
 
-		console.log({ isRequired });
+		// console.log({ isRequired });
 		const { questions } = event;
 		const idx = questions.findIndex((q) => q._id === _id);
 
@@ -204,19 +204,19 @@ const Question = ({
 		}
 
 		setEventSaveLoading(true);
-		console.log({ alteredEvent });
+		// console.log({ alteredEvent });
 		const me = await updateEvent(event?._id, alteredEvent);
-		console.log(
-			"🚀 ~ file: Question.js:44 ~ onBlurHandler ~ event:",
-			me?.data.questions
-		);
+		// console.log(
+		// 	"🚀 ~ file: Question.js:44 ~ onBlurHandler ~ event:",
+		// 	me?.data.questions
+		// );
 		setEventSaveLoading(false);
 	};
 
 	const selectedFileTypesHandler = async (e, _id) => {
 		const value = e.target.value;
 		setSelectedFileType(value);
-		console.log(value);
+		// console.log(value);
 		const { questions } = event;
 		const idx = questions.findIndex((question) => question._id === _id);
 		if (idx < 0) {
@@ -240,7 +240,7 @@ const Question = ({
 
 		setEventSaveLoading(true);
 		const me = await updateEvent(event?._id, alteredEvent);
-		console.log("🚀 ~ file: Question.js:44 ~ onBlurHandler ~ event:", me);
+		// console.log("🚀 ~ file: Question.js:44 ~ onBlurHandler ~ event:", me);
 		setEventSaveLoading(false);
 	};
 	return (

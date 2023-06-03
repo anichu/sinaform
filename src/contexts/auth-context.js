@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
 				return;
 			}
 			const userData = JSON.parse(userDataJson);
-			console.log(userData);
+			// console.log(userData);
 			setUser(userData);
 		}
 		init();
@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
 		userLoading,
 		setUserLoading,
 	};
-	console.log({ userLoading });
+	// console.log({ userLoading });
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 

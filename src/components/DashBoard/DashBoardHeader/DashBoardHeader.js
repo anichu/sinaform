@@ -54,12 +54,12 @@ const DashBoardHeader = () => {
 	};
 
 	const onChange = (value, dateString) => {
-		console.log("Selected Time: ", value);
-		console.log("Formatted Selected Time: ", dateString);
+		// console.log("Selected Time: ", value);
+		// console.log("Formatted Selected Time: ", dateString);
 		setSelectedTime(dateString);
 	};
 	const onOk = (value) => {
-		console.log("onOk: ", value);
+		// console.log("onOk: ", value);
 	};
 
 	const searchHandler = async () => {

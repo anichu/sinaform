@@ -21,13 +21,13 @@ const DashBoard = () => {
 		const fetchEvents = async () => {
 			if (q) {
 				const data = await getEventsByTitle(q || "");
-				console.log(data);
-				console.log(data?.data.length);
+				// console.log(data);
+				// console.log(data?.data.length);
 				setEvents(data.data);
 			} else if (startDate && endDate) {
 				const data = await getEventsByCreatedDate(startDate, endDate);
-				console.log(data);
-				console.log(data?.data.length);
+				// console.log(data);
+				// console.log(data?.data.length);
 				setEvents(data.data);
 			} else {
 				setEvents(eventsData);

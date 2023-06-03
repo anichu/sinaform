@@ -65,7 +65,7 @@ const Option = ({
 		}
 		setEventSaveLoading(true);
 		const me = await updateEvent(event?._id, alteredEvent);
-		console.log("🚀 ~ file: Question.js:44 ~ onBlurHandler ~ event:", me);
+		// console.log("🚀 ~ file: Question.js:44 ~ onBlurHandler ~ event:", me);
 		setEventSaveLoading(false);
 	};
 

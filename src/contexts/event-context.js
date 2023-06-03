@@ -47,7 +47,7 @@ const EventProvider = ({ children }) => {
 		},
 	});
 
-	console.log("🚀 ~ file: event-context.js:28 ~ EventProvider ~ data:", data);
+	// console.log("🚀 ~ file: event-context.js:28 ~ EventProvider ~ data:", data);
 
 	if (isLoading) {
 		return <div>Loading....</div>;

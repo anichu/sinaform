@@ -78,7 +78,7 @@ const EventPage = () => {
 		setEventSaveLoading(false);
 	};
 
-	console.log(event);
+	// console.log(event);
 
 	return (
 		<div>

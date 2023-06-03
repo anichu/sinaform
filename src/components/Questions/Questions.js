@@ -28,7 +28,7 @@ const Questions = () => {
 		}
 		setEventSaveLoading(true);
 		const me = await updateEvent(event?._id, alteredEvent);
-		console.log("sina-update-event", me);
+		// console.log("sina-update-event", me);
 		setEventSaveLoading(false);
 	};
 

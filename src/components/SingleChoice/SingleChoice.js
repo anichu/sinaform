@@ -20,7 +20,7 @@ const SingleChoice = ({ question, index, setResponses, responses }) => {
 			};
 		});
 	};
-	console.log(responses);
+	// console.log(responses);
 	return (
 		<div className="p-5 mt-5 bg-gray-300 border-2 border-gray-400 rounded-md shadow-md">
 			{question && (

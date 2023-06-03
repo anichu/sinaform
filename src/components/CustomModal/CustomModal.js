@@ -55,7 +55,7 @@ const CustomModal = ({ isOpen, handleClose }) => {
 		try {
 			setFileUploadLoading(true);
 			const { data: imgData } = await axios.post(url, formData);
-			console.log(imgData);
+			// console.log(imgData);
 			if (!imgData?.success) {
 				toast.error("File doesn't uploaded");
 				return;
@@ -97,7 +97,7 @@ const CustomModal = ({ isOpen, handleClose }) => {
 			toast.success("event created");
 			navigate(`/event/${eventData?.data?._id}`);
 		}
-		console.log("event", eventData);
+		// console.log("event", eventData);
 	};
 	const handleChange = (event) => {
 		const { name, value } = event.target;

@@ -23,7 +23,7 @@ const QuestionsBody = ({ questions, dashboard, data }) => {
 			navigate("/login");
 		}
 
-		console.log(responses);
+		// console.log(responses);
 		const insertResponse = {
 			user: user?._id,
 			responses: responses,
@@ -31,10 +31,10 @@ const QuestionsBody = ({ questions, dashboard, data }) => {
 		};
 
 		const updatedData = await createResponse(data?._id, insertResponse);
-		console.log(
-			"🚀 ~ file: Question.js:44 ~ onBlurHandler ~ event:",
-			updatedData
-		);
+		// console.log(
+		// 	"🚀 ~ file: Question.js:44 ~ onBlurHandler ~ event:",
+		// 	updatedData
+		// );
 		navigate(`/event/responded/${data?._id}?q=response`);
 	};
 

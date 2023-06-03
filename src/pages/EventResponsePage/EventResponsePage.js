@@ -6,7 +6,7 @@ import { EventContext } from "../../contexts/event-context";
 import SingleChoiceResponse from "../../components/EventResponse/SingleChoiceResponse/SingleChoiceResponse";
 
 const ResponseHeader = ({ event }) => {
-	console.log(event);
+	// console.log(event);
 	return (
 		<div>
 			<div className="border-2 bg-gray-300 border-gray-300 rounded-md p-4">

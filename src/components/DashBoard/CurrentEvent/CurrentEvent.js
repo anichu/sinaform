@@ -35,7 +35,7 @@ const CurrentEvent = ({ event }) => {
 				{endEvent > 0 && (
 					<MilliToTime
 						diff={endEvent}
-						previousDate={event?.endEvent}
+						previousDate={new Date(event?.endEvent)}
 						level="END"
 					/>
 				)}

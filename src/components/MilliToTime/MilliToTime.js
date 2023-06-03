@@ -2,7 +2,7 @@ import React from "react";
 
 const MilliToTime = ({ diff, previousDate, level }) => {
 	const presentDate = new Date();
-	console.log(diff);
+
 	const seconds = () => {
 		return parseInt(diff / 1000);
 	};
@@ -62,6 +62,7 @@ const MilliToTime = ({ diff, previousDate, level }) => {
 							dateOutput = timeLaps + " months";
 						} else {
 							timeLaps = years();
+							dateOutput = timeLaps + " years";
 						}
 					}
 				}
@@ -69,7 +70,7 @@ const MilliToTime = ({ diff, previousDate, level }) => {
 		}
 	}
 
-	console.log(dateOutput);
+	// console.log(dateOutput);
 	return (
 		<p className="font-bold text-sm text-black">
 			{dateOutput} left to <span className="text-purple-950"> {level} </span>

@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
 import CoverForm from "../CoverForm/CoverForm";
 import { Link } from "react-router-dom";
-import Time from "../../Time/Time";
 import { endEventCount, startEventCount } from "../../../utils/event/functions";
 import MilliToTime from "../../MilliToTime/MilliToTime";
-import { useEffect } from "react";
 import { AuthContext } from "../../../contexts/auth-context";
 const UpcomingEvent = ({ event }) => {
 	const startEvent = startEventCount(event?.startEvent);
 	const endEvent = endEventCount(event?.endEvent);
+	
 	const { user } = useContext(AuthContext);
 	let link;
 	if (user?._id === event.user) {
@@ -17,7 +16,7 @@ const UpcomingEvent = ({ event }) => {
 		link = `/event/questions/${event._id}`;
 	}
 
-	console.log(link);
+	// console.log(link);
 
 	return (
 		<Link

@@ -3,7 +3,7 @@ import React from "react";
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from "recharts";
 
 const SingleChoiceResponse = ({ title, questionId, responses }) => {
-	console.log(responses);
+	// console.log(responses);
 	// const data01 = [
 	// 	{
 	// 		name: "Group A",
@@ -80,9 +80,7 @@ const SingleChoiceResponse = ({ title, questionId, responses }) => {
 					return null;
 				}
 
-				console.log();
-				console.log(Object.keys(response?.responses));
-
+			
 				return (
 					<div key={index}>
 						<p>{response?.responses[questionId]}</p>
