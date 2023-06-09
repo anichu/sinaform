@@ -65,6 +65,7 @@ const Time = ({ time }) => {
 							dateOutput = timeLaps + " months";
 						} else {
 							timeLaps = years();
+							dateOutput = timeLaps + " years";
 						}
 					}
 				}

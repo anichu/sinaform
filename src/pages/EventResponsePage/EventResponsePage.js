@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { EventContext } from "../../contexts/event-context";
 import SingleChoiceResponse from "../../components/EventResponse/SingleChoiceResponse/SingleChoiceResponse";
+import UserResponse from "../../components/UserResponse/UserResponse";
 
 const ResponseHeader = ({ event }) => {
-	// console.log(event);
 	return (
 		<div>
 			<div className="border-2 bg-gray-300 border-gray-300 rounded-md p-4">
@@ -22,20 +22,32 @@ const ResponseHeader = ({ event }) => {
 			</div>
 
 			<div>
-				<div>
-					{event?.questions.map((question) => {
+				<div className="bg-gray-300 rounded-lg mt-4 p-4">
+					{event?.responses.map((response, index) => {
+						return (
+							<UserResponse response={response} index={index + 1} key={index} />
+						);
+					})}
+				</div>
+
+				{/* <div>
+					{event?.questions.map((question, index) => {
 						if (question?.type === "singleChoice") {
 							return (
-								<SingleChoiceResponse
-									responses={event?.responses}
-									title={question.title}
-									questionId={question._id}
-								/>
+								<>
+								  
+									<SingleChoiceResponse
+										responses={event?.responses}
+										title={question.title}
+										questionId={question._id}
+										key={index}
+									/>
+								</>
 							);
 						}
 						return null;
 					})}
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);
